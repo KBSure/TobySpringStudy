@@ -21,6 +21,14 @@ public class SingletonTest {
         System.out.println(dao3);
         System.out.println(dao4);
         System.out.println("dao3 == dao4 : "+ (dao3 == dao4));
+
+        SingletonUserDao singletonUserDao1 = SingletonUserDao.getInstance();
+        SingletonUserDao singletonUserDao2 = SingletonUserDao.getInstance();
+
+        System.out.println(singletonUserDao1);
+        System.out.println(singletonUserDao2);
+        System.out.println("singletonUserDao1 == singletonUserDao2 : "+ (singletonUserDao1 == singletonUserDao2));
+
     }
 
 }
