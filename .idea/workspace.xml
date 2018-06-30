@@ -288,9 +288,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.UserDaoConnectionCountingTest">
     <configuration name="UserDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="springbook.user.dao.UserDao" />
+      <module name="TobySpringStudy" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="springbook.user.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="UserDaoConnectionCountingTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="springbook.user.dao.UserDaoConnectionCountingTest" />
       <module name="TobySpringStudy" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
@@ -341,8 +352,13 @@
       <properties />
       <listeners />
     </configuration>
+    <list>
+      <item itemvalue="Application.UserDao" />
+      <item itemvalue="Application.UserDaoConnectionCountingTest" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.UserDaoConnectionCountingTest" />
         <item itemvalue="Application.UserDao" />
       </list>
     </recent_temporary>

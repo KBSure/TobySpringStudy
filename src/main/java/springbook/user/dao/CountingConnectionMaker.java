@@ -1,26 +1,25 @@
 package springbook.user.dao;
 
+import lombok.Getter;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class CountingConnectionMaker implements ConnectionMaker {
+@Getter
+public class CountingConnectionMaker implements ConnectionMaker{
 
-    private int counter = 0;
-    private ConnectionMaker realConnectionMaker;
+    int count = 0;
+    ConnectionMaker realConnectionMaker;
 
-    public CountingConnectionMaker(ConnectionMaker realConnectionMaker) {
-        this.realConnectionMaker = realConnectionMaker;
+    public CountingConnectionMaker(){
+    }
+    public CountingConnectionMaker(ConnectionMaker connectionMaker){
+        this.realConnectionMaker = connectionMaker;
     }
 
     @Override
     public Connection makeConnection() throws ClassNotFoundException, SQLException {
-        this.counter++;
-
+        this.count++;
         return realConnectionMaker.makeConnection();
     }
-
-    public int getCounter() {
-        return this.counter;
-    }
-
 }
