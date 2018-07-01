@@ -4,23 +4,24 @@ import lombok.Getter;
 import lombok.Setter;
 import springbook.user.domain.User;
 
+import javax.sql.DataSource;
 import java.sql.*;
 
 @Getter @Setter
 public class UserDao {
 
-    ConnectionMaker connectionMaker;
+    DataSource dataSource;
 
     public UserDao() {
     }
 
-    public UserDao(ConnectionMaker connectionMaker){
-        this.connectionMaker = connectionMaker;
+    public UserDao(DataSource dataSource){
+        this.dataSource = dataSource;
     }
 
-    public void add(User user) throws ClassNotFoundException, SQLException {
+    public void add(User user) throws SQLException {
 
-        Connection con = connectionMaker.makeConnection();
+        Connection con = dataSource.getConnection();
         String sql = "insert into users(id, name, password) values(?, ?, ?)";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, user.getId());
@@ -33,9 +34,9 @@ public class UserDao {
         con.close();
     }
 
-    public User get(String id) throws ClassNotFoundException, SQLException {
+    public User get(String id) throws SQLException {
 
-        Connection con = connectionMaker.makeConnection();
+        Connection con = dataSource.getConnection();
 
         String sql = "select * from users where id = ?";
         PreparedStatement ps = con.prepareStatement(sql);
