@@ -1,9 +1,12 @@
 package springbook.user.dao;
 
+import lombok.Getter;
+import lombok.Setter;
 import springbook.user.domain.User;
 
 import java.sql.*;
 
+@Getter @Setter
 public class UserDao {
 
     ConnectionMaker connectionMaker;
