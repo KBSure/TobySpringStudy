@@ -1,6 +1,7 @@
 package springbook.user.dao;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.runner.JUnitCore;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import springbook.user.domain.User;
@@ -10,6 +11,11 @@ import java.sql.SQLException;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class UserDaoTest {
+
+    public static void main(String[] args) {
+        JUnitCore.main("springbook.user.dao.UserDaoTest");
+    }
+
     @Test
     public void addAndGet() throws SQLException {
         ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
