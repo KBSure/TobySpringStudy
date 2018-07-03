@@ -1,7 +1,9 @@
-package springbook.user.dao;
+package springbook.user.dao.singleton;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import springbook.user.dao.DaoFactory;
+import springbook.user.dao.UserDao;
 
 public class SingletonTest {
 
