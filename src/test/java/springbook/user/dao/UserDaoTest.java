@@ -51,17 +51,19 @@ public class UserDaoTest {
         dao.deleteAll();
         assertThat(dao.getCount()).isEqualTo(0);
 
-        User user = new User();
-        user.setId("gyumee");
-        user.setName("박성철");
-        user.setPassword("springno1");
+        User user1 = new User("kbs", "김병수", "7");
+        User user2 = new User("mbc", "마봉춘", "11");
 
-        dao.add(user);
-        assertThat(dao.getCount()).isEqualTo(1);
+        dao.add(user1);
+        dao.add(user2);
+        assertThat(dao.getCount()).isEqualTo(2);
 
-        User user2 = dao.get(user.getId());
+        User userGet1 = dao.get(user1.getId());
+        assertThat(userGet1.getName()).isEqualTo(user1.getName());
+        assertThat(userGet1.getPassword()).isEqualTo(user1.getPassword());
 
-        assertThat(user2.getName()).isEqualTo(user.getName());
-        assertThat(user2.getPassword()).isEqualTo(user.getPassword());
+        User userGet2 = dao.get(user2.getId());
+        assertThat(userGet2.getName()).isEqualTo(user2.getName());
+        assertThat(userGet2.getPassword()).isEqualTo(user2.getPassword());
     }
 }
