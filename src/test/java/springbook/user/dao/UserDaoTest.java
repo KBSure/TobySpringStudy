@@ -16,7 +16,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class UserDaoTest {
 
-    UserDao dao;
+    private UserDao dao;
+    private User user1;
+    private User user2;
+    private User user3;
 
     public static void main(String[] args) {
         JUnitCore.main("springbook.user.dao.UserDaoTest");
@@ -26,17 +29,16 @@ public class UserDaoTest {
     public void setup(){
         ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
         this.dao = context.getBean("userDao", UserDao.class);
+
+        this.user1 = new User("kbs", "김병수", "7");
+        this.user2 = new User("mbc", "마봉춘", "11");
+        this.user3 = new User("sbs", "신봉선", "5");
     }
 
     @Test
     public void count() throws SQLException {
         dao.deleteAll();
         assertThat(dao.getCount()).isEqualTo(0);
-
-        //User필요
-        User user1 = new User("kbs", "김병수", "7");
-        User user2 = new User("mbc", "마봉춘", "11");
-        User user3 = new User("sbs", "신봉선", "5");
 
         dao.add(user1);
         assertThat(dao.getCount()).isEqualTo(1);
@@ -60,9 +62,6 @@ public class UserDaoTest {
     public void addAndGet() throws SQLException {
         dao.deleteAll();
         assertThat(dao.getCount()).isEqualTo(0);
-
-        User user1 = new User("kbs", "김병수", "7");
-        User user2 = new User("mbc", "마봉춘", "11");
 
         dao.add(user1);
         dao.add(user2);
