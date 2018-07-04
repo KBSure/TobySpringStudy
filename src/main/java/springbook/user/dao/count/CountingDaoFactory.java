@@ -1,8 +1,9 @@
-package springbook.user.dao;
+package springbook.user.dao.count;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
+import springbook.user.dao.UserDao;
 
 import javax.sql.DataSource;
 
