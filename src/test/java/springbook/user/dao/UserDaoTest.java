@@ -9,16 +9,20 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.datasource.SingleConnectionDataSource;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import springbook.user.domain.User;
 
+import javax.sql.DataSource;
 import java.sql.SQLException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/applicationContext.xml")
+@DirtiesContext
 public class UserDaoTest {
 
     @Autowired
@@ -33,9 +37,14 @@ public class UserDaoTest {
 
     @Before
     public void setup(){
+        DataSource dataSource = new SingleConnectionDataSource("jdbc:mysql://localhost:3306/testdb?serverTimezone=UTC&useSSL=false", "spring", "book", true);
+        dao.setDataSource(dataSource);
         this.user1 = new User("kbs", "김병수", "7");
         this.user2 = new User("mbc", "마봉춘", "11");
         this.user3 = new User("sbs", "신봉선", "5");
+
+        System.out.println(this.dao);
+        System.out.println(this);
     }
 
     @Test
