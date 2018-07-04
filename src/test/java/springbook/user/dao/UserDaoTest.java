@@ -3,8 +3,10 @@ package springbook.user.dao;
 import org.junit.Test;
 import org.junit.runner.JUnitCore;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.dao.EmptyResultDataAccessException;
 import springbook.user.domain.User;
 
 import java.sql.SQLException;
@@ -40,6 +42,16 @@ public class UserDaoTest {
         assertThat(dao.getCount()).isEqualTo(3);
     }
 
+    @Test(expected = EmptyResultDataAccessException.class)
+    public void getUserFailure() throws SQLException {
+        ApplicationContext context = new AnnotationConfigApplicationContext(DaoFactory.class);
+        UserDao dao = context.getBean("userDao", UserDao.class);
+
+        dao.deleteAll();
+        assertThat(dao.getCount()).isEqualTo(0);
+
+        dao.get("unknown_id");
+    }
 
     @Test
     public void addAndGet() throws SQLException {
