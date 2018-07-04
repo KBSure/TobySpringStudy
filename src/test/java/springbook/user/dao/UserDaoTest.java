@@ -22,7 +22,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class UserDaoTest {
 
     @Autowired
-    private ApplicationContext context;
     private UserDao dao;
     private User user1;
     private User user2;
@@ -34,8 +33,6 @@ public class UserDaoTest {
 
     @Before
     public void setup(){
-        this.dao = context.getBean("userDao", UserDao.class);
-
         this.user1 = new User("kbs", "김병수", "7");
         this.user2 = new User("mbc", "마봉춘", "11");
         this.user3 = new User("sbs", "신봉선", "5");
